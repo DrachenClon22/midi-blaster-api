@@ -1,0 +1,4 @@
+name: MIDIBlasterAPI
+version: 1.0.0
+author: DrachenClon22
+main: com.drachenclon.midiblaster.MIDIBlasterAPICore
