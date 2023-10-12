@@ -8,7 +8,7 @@ API for Minecraft Spigot plugins for decoding and playing MIDI files in game.
 This API can be used by server administration for playing any music to players, but there's no need to convert your files to .nbs format, API supports any raw .mid (MIDI) files.<br>
 <br>
 It is highly recommended using music in the F#0 to F#2 range, otherwise your melody will be inexorably and mercilessly transposed, that may cause unexpected sounding. All 16 channels and voices are also supported,
-so polyphony is more or less possible, but do not forget that Minecraft is just a game, not an MP3 player, everything within reasonable limits, but no limits otherwise, so explore and have fun.<br>
+so polyphony is more or less possible, but do not forget that Minecraft is just a game, not an MP3 player, everything should be within reasonable limits, but no limits otherwise, so explore and have fun.<br>
 <br>
 As MIDI file can be used any size .mdi (MIDI) file, but still within reasonable limits, so use this API wisely and everything will be fine.<br>
 ## Features
