@@ -13,7 +13,8 @@ so polyphony is more or less possible, but do not forget that Minecraft is just 
 .mdi (MIDI) file can be any size, but still within reasonable limits, so use this API wisely and everything will be fine.<br>
 ## Features
 - Using raw .mid (MIDI) files, not .nbs or any converted format;
-- Music can be played to specific player only or for everyone, people around user will not hear a one note.
+- Music can be played to specific player only or for everyone, people around user will not hear a one note;
+- Different music can be played to different players, multi-threading support.
 ## Licence
 This API can be freely used only in any open-source projects, not any commercial or closed or whatever. But if you want to, you can write me an email (drachenclon22@gmail.com).<br>
 <br>
