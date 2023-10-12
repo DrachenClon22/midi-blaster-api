@@ -1,9 +1,11 @@
-# MIDI Blaster API documentation
+# MIDI Blaster API
 ## General Info
 API for Minecraft Spigot plugins for decoding and playing MIDI files in game.
 - Author: DrachenClon22
 - Current Spigot version: 1.20
 - Current version: 1.0.0
+
+Documentation can be found at [Wiki page](https://github.com/DrachenClon22/midi-blaster-api/wiki)
 ## Description
 This API can be used by server administration for playing any music to players, but there's no need to convert your files to .nbs format, API supports any raw .mid (MIDI) files.<br>
 <br>
