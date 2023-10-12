@@ -10,7 +10,7 @@ This API can be used by server administration for playing any music to players, 
 It is highly recommended using music in the F#0 to F#2 range, otherwise your melody will be inexorably and mercilessly transposed, that may cause unexpected sounding. All 16 channels and voices are also supported,
 so polyphony is more or less possible, but do not forget that Minecraft is just a game, not an MP3 player, everything should be within reasonable limits, but no limits otherwise, so explore and have fun.<br>
 <br>
-As MIDI file can be used any size .mdi (MIDI) file, but still within reasonable limits, so use this API wisely and everything will be fine.<br>
+As MIDI file can be used any size of .mdi (MIDI) file, but still within reasonable limits, so use this API wisely and everything will be fine.<br>
 ## Features
 - Using raw .mid (MIDI) files, not .nbs or any converted format;
 - Music can be played to specific player only or for everyone, people around user will not hear a one note.
