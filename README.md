@@ -20,4 +20,4 @@ This API can be freely used only in any open-source projects, not any commercial
 <br>
 If you use this API anywhere, please, put me in credits (DrachenClon22) and write me an email (drachenclon22@gmail.com), I'd be really glad.
 ## Example
-Example on this video shows only music playing option. But with a bit of creativity...
+Example on [this video](https://www.youtube.com/watch?v=QE_6F3KzpT8) shows only music playing option.
