@@ -11,6 +11,10 @@ public final class MIDIChannel extends MIDIFile {
 		_channel = channel;
 	}
 	
+	/**
+	 * Get current channel
+	 * @return integer, current channel
+	 */
 	public int GetChannel() {
 		return _channel;
 	}

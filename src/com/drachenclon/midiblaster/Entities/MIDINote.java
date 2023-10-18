@@ -4,6 +4,15 @@ import org.bukkit.Note;
 
 import com.drachenclon.midiblaster.Utils.MIDIConverter;
 
+/**
+ * Class that contains information about current MIDI note.
+ * 
+ * Notes can be 2 types:
+ * (1) Regular note with pitch and delay, in this case _note variable
+ * will be from 0 to 24;
+ * (2) Pause note or just delay, actually not even played in final sequence,
+ * needs for converting and optimizing, in this case _note will be -1.
+ */
 public class MIDINote {
 	private int _note;
 	private Note _convertedNote;

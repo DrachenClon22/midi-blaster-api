@@ -1,28 +1,31 @@
 package com.drachenclon.midiblaster.MIDIPlayer;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 import org.bukkit.Location;
-import org.bukkit.Note;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.drachenclon.midiblaster.MIDIBlasterAPICore;
-import com.drachenclon.midiblaster.Entities.MIDIInstrument;
 import com.drachenclon.midiblaster.Entities.MIDINote;
 import com.drachenclon.midiblaster.Entities.MIDI.MIDIFile;
-import com.drachenclon.midiblaster.Utils.MIDIConverter;
 
+/**
+ * Main class that is playing music
+ * @apiNote before calling any class' methods, always use {@link MIDIPlayer#init(JavaPlugin) init()} method
+ */
 public final class MIDIPlayer {
 	
 	private BukkitTask _task;
 	private MIDINote[] _notes;
 	private int _perfectBlockSize;
 	
-	static JavaPlugin _core;
+	private static JavaPlugin _core;
+	/**
+	 * Uses to init MIDIPlayer
+	 * @apiNote uses only once to define core plugin
+	 * @param core - core plugin that uses API
+	 */
 	public static void init(JavaPlugin core) {
 		if (_core == null) {
 			_core = core;
@@ -42,10 +45,21 @@ public final class MIDIPlayer {
 	
 	public void Play(MIDIFile midi, Player[] players) {
 		
+		// Register this MIDIPlayer in core API class
 		MIDIBlasterAPICore.RegisterPlayer(this);
 		
 		Stop();
 		_notes = midi.GetNotes();
+		
+		/*
+		 * Result notes that will be played divide into blocks of notes to optimize
+		 * handling process in the future. This allows to play MIDI files with more than
+		 * 20k notes (max MIDI tested had 21k notes) without any problems and any lags
+		 * 
+		 * Perfect block size is sqrt of notes to keep balance between block size and blocks count
+		 * 
+		 * And not to forget that last block usually not equals to the first block
+		 */
 		_perfectBlockSize = (int) Math.ceil(Math.sqrt(_notes.length));
 		MIDIFile[] notesBlocks = new MIDIFile[_notes.length / _perfectBlockSize];
 		
@@ -73,6 +87,7 @@ public final class MIDIPlayer {
 		}
 		currentNotesForBlock = null;
 		
+		// Start new task so no delays will be in plugin classes
 		_task = new BukkitRunnable() {
 			@Override
 			public void run() {

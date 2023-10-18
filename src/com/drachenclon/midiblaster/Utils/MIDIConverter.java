@@ -14,6 +14,13 @@ import com.drachenclon.midiblaster.Entities.MIDI.MIDIFile;
 import com.drachenclon.midiblaster.Entities.MIDI.RawMIDIFile;
 
 public final class MIDIConverter {
+	/**
+	 * Converts channel and note input to MIDI instrument<bt>
+	 * @param channel - channel on what current note is playing
+	 * @param note - current playing note
+	 * @return MIDI instrument
+	 * @apiNote Every channel in MIDI has their own instrument
+	 */
 	public static MIDIInstrument ConvertChannel(int channel, int note) {
 		switch(channel) {
 		case 0: return new MIDIInstrument(Instrument.PIANO, 0);
@@ -39,6 +46,12 @@ public final class MIDIConverter {
 		}
 	}
 	
+	/**
+	 * Finalizing note by adding all octave adjustments etc.
+	 * @param raw - raw note input, 0-24
+	 * @param octave - octave amount that should be added (remember that Minecraft only supports notes in range F#0-F#2)
+	 * @return final note as Note
+	 */
 	public static Note FinalizeNote(int raw, int octave) {
 		int temp = raw + octave * 12;
 		raw = (temp > 0 && temp < 25) ? temp : raw;
@@ -46,10 +59,20 @@ public final class MIDIConverter {
 		return new Note(raw);
 	}
 	
+	/**
+	 * Converts raw MIDI file to ready-to-use MIDI file<br>
+	 * <br>
+	 * Sorts all notes in right position, removes every duplicate notes and unite pauses
+	 * @param input - input raw MIDI file
+	 * @return ready-to-use MIDI file
+	 */
 	public static MIDIFile ConvertFromRaw(RawMIDIFile input) {
 		MIDINote[] notes = input.GetRawNotes();
+		/*
+		 * Sort all notes by position in MIDI file and find delay between
+		 * each note to play them correctly
+		 */
 		Arrays.sort(notes, Comparator.comparingDouble(o -> o.GetTickPosition()));
-		
 		long lastTick = 0;
 		long currTick = 0;
 		for (int i = 0; i < notes.length; i++) {
@@ -58,12 +81,17 @@ public final class MIDIConverter {
 			lastTick = currTick;
 		}
 		
+		// waitable array of MIDINote that is actually result array
 		List<MIDINote> waitable = new ArrayList<MIDINote>();
+		// Array of temp elements that are actually accords (all notes between notes with delay or pauses)
 		List<MIDINote> tempArray = new ArrayList<MIDINote>();
 		
+		// Last index of input note that is pause (to unite pauses that follow each other)
 		int pauseIndex = -1;
+		// Buffer variable of temp pauses ms delay
 		long totalPause = 0;
 		for (int i = 0; i < notes.length; i++) {
+			// If note pitch is -1, note is actually pause
 			if (notes[i].GetRawNote() == -1) {
 				if (pauseIndex == -1) {
 					pauseIndex = i;

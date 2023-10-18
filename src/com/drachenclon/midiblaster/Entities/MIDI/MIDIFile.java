@@ -2,6 +2,9 @@ package com.drachenclon.midiblaster.Entities.MIDI;
 
 import com.drachenclon.midiblaster.Entities.MIDINote;
 
+/**
+ * File that contain read-to-use files to play music, notes are sorted
+ */
 public class MIDIFile extends RawMIDIFile {
 	private int _size;
 	
@@ -22,10 +25,18 @@ public class MIDIFile extends RawMIDIFile {
 		this(notes.length, notes);
 	}
 	
+	/**
+	 * Get size of total amount of notes in file
+	 * @return integer, amount of notes in file
+	 */
 	public int GetSize() {
 		return _size;
 	}
 	
+	/**
+	 * Get current notes from file
+	 * @return array of MIDINote, all notes from file
+	 */
 	public MIDINote[] GetNotes() {
 		return GetRawNotes();
 	}
