@@ -3,7 +3,7 @@
 API for Minecraft Spigot plugins for decoding and playing MIDI files in game.
 - Author: DrachenClon22
 - Current Spigot version: 1.20
-- Current version: 1.0.0
+- Current version: 1.0.1
 
 Documentation can be found at [Wiki page](https://github.com/DrachenClon22/midi-blaster-api/wiki)
 ## Description
