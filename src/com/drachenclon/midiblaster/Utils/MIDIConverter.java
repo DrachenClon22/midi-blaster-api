@@ -81,7 +81,7 @@ public final class MIDIConverter {
 			lastTick = currTick;
 		}
 		
-		// waitable array of MIDINote that is actually result array
+		// Temp array of result notes
 		List<MIDINote> waitable = new ArrayList<MIDINote>();
 		// Array of temp elements that are actually accords (all notes between notes with delay or pauses)
 		List<MIDINote> tempArray = new ArrayList<MIDINote>();
