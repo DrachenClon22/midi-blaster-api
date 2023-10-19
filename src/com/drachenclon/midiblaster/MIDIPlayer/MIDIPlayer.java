@@ -20,6 +20,8 @@ public final class MIDIPlayer {
 	private MIDINote[] _notes;
 	private int _perfectBlockSize;
 	
+	private Player[] _players;
+	
 	private static JavaPlugin _core;
 	/**
 	 * Uses to init MIDIPlayer
@@ -30,6 +32,10 @@ public final class MIDIPlayer {
 		if (_core == null) {
 			_core = core;
 		}
+	}
+	
+	public Player[] GetPlayers() {
+		return _players;
 	}
 	
 	public void Stop() {
@@ -44,6 +50,8 @@ public final class MIDIPlayer {
 	}
 	
 	public void Play(MIDIFile midi, Player[] players) {
+		
+		_players = players;
 		
 		// Register this MIDIPlayer in core API class
 		MIDIBlasterAPICore.RegisterPlayer(this);
@@ -91,7 +99,7 @@ public final class MIDIPlayer {
 		_task = new BukkitRunnable() {
 			@Override
 			public void run() {
-				for (Player player : players) {
+				for (Player player : _players) {
 					if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
 						player.sendMessage("Total notes: " + midi.GetSize());
 						player.sendMessage("Block size: " + _perfectBlockSize);
@@ -101,13 +109,13 @@ public final class MIDIPlayer {
 				
 				try {
 					Thread.sleep(1000);
-					for (Player player : players) {
+					for (Player player : _players) {
 						if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
 							player.sendMessage("Starting");
 						}
 					}
 				} catch (InterruptedException e) {
-					for (Player player : players) {
+					for (Player player : _players) {
 						if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
 							player.sendMessage(e.getMessage());
 						}
@@ -125,7 +133,7 @@ public final class MIDIPlayer {
 						try {
 							if (_notes[i].GetMillisecondsTick() > 0) {
 								time = _notes[i].GetMillisecondsTick();
-								for (Player player : players) {
+								for (Player player : _players) {
 									if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
 										player.sendMessage("Waiting for: " + time + " ms");
 									}
@@ -134,7 +142,7 @@ public final class MIDIPlayer {
 							}
 							
 							if (_notes[i].GetRawNote() != -1) {
-								for (Player player : players) {
+								for (Player player : _players) {
 									loc = player.getLocation();
 									
 									if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
@@ -146,7 +154,7 @@ public final class MIDIPlayer {
 								}
 							}
 						} catch (Exception e) {
-							for (Player player : players) {
+							for (Player player : _players) {
 								if (MIDIBlasterAPICore.GetDebugMode() && player.isOp()) {
 									player.sendMessage(e.getMessage());
 								}
