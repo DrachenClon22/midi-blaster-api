@@ -23,5 +23,5 @@ This API can be freely used only in any open-source projects, not any commercial
 If you use this API anywhere, please, put me in credits (DrachenClon22) and write me an email (drachenclon22@gmail.com), I'd be really glad.
 ## Example
 Example on [this video](https://www.youtube.com/watch?v=QE_6F3KzpT8) shows only music playing option.
-## Links:
+## Links
 * [Spigot Plugin Page](https://www.spigotmc.org/resources/midi-blaster-api.113134/)
