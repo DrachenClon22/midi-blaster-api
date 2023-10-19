@@ -24,4 +24,4 @@ If you use this API anywhere, please, put me in credits (DrachenClon22) and writ
 ## Example
 Example on [this video](https://www.youtube.com/watch?v=QE_6F3KzpT8) shows only music playing option.
 ## Links:
-* [Spigot Page Plugin](https://www.spigotmc.org/resources/midi-blaster-api.113134/)
+* [Spigot Plugin Page](https://www.spigotmc.org/resources/midi-blaster-api.113134/)
